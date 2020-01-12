@@ -7,10 +7,11 @@ Date: 1/12/20
 import projects.mcdadem.dominion.Dominion as Dominion
 import projects.mcdadem.dominion.testUtility as tU
 
+# TODO: introduce a bug
 # BUILD GAME
 # ---------------------------------------------------------------------------- #
 # Set the player names.
-player_names = ["Annie", "*Ben", "*Carla"]
+player_names = ["*Annie", "*Ben", "*Carla"]
 
 # Construct the player objects.
 players = tU.build_players(player_names)
