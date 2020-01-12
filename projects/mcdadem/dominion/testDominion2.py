@@ -7,7 +7,6 @@ Date: 1/12/20
 import projects.mcdadem.dominion.Dominion as Dominion
 import projects.mcdadem.dominion.testUtility as tU
 
-# TODO: introduce a bug
 # BUILD GAME
 # ---------------------------------------------------------------------------- #
 # Set the player names.
