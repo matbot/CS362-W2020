@@ -27,7 +27,7 @@ def build_players(player_names):
 # Return quantity of curse cards and victory cards.
 def get_curse_victory_card_quantities(num_players):
     curse_card_quantity = -10 + 10 * num_players
-    if len(num_players) > 2:
+    if num_players > 2:
         victory_card_quantity = 12
     else:
         victory_card_quantity = 8

@@ -27,7 +27,7 @@ trash = []
 
 # PLAY GAME
 # ---------------------------------------------------------------------------- #
-#Play the game
+# Play the game
 turn = 0
 while not Dominion.gameover(supply):
     turn += 1
