@@ -7,7 +7,6 @@ Date: 1/12/20
 import projects.mcdadem.dominion.Dominion as Dominion
 import projects.mcdadem.dominion.testUtility as tU
 
-# TODO: introduce a bug
 # BUILD GAME
 # ---------------------------------------------------------------------------- #
 # Set the player names.
@@ -18,7 +17,8 @@ players = tU.build_players(player_names)
 
 # Build the supply deck.
 nC, nV = tU.get_curse_victory_card_quantities(len(player_names))
-supply = tU.build_supply(len(player_names), nC, nV)
+# BUG: nC and nV are passed to tU.build_supply in incorrect order.
+supply = tU.build_supply(len(player_names), nV, nC)
 
 # Get supply prices.
 supply_order = tU.get_supply_prices()
