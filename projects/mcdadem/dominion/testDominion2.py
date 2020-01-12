@@ -5,9 +5,8 @@ Author: Mathew McDade
 Date: 1/12/20
 """
 
-import Dominion
-import random
-from collections import defaultdict
+import projects.mcdadem.dominion.testUtility as tU
+
 
 #Get player names
 player_names = ["Annie","*Ben","*Carla"]
