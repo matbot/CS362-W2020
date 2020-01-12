@@ -5,25 +5,33 @@ Author: Mathew McDade
 Date: 1/12/20
 """
 
-import Dominion
 import random
 from collections import defaultdict
 
+import projects.mcdadem.dominion.Dominion as Dominion
 
-# Return player names.
-def get_player_names():
-    return ["Annie", "*Ben", "*Carla"]
-
+# BUILD GAME FUNCTIONS
+# ---------------------------------------------------------------------------- #
+# Return a list of player objects.
+def build_players(player_names):
+    players = []
+    for name in player_names:
+        if name[0] == "*":
+            players.append(Dominion.ComputerPlayer(name[1:]))
+        elif name[0] == "^":
+            players.append(Dominion.TablePlayer(name[1:]))
+        else:
+            players.append(Dominion.Player(name))
+    return players
 
 # Return quantity of curse cards and victory cards.
-def get_curse_victory_card_quantities(player_names):
-    curse_card_quantity = -10 + 10 * len(player_names)
-    if len(player_names) > 2:
+def get_curse_victory_card_quantities(num_players):
+    curse_card_quantity = -10 + 10 * num_players
+    if len(num_players) > 2:
         victory_card_quantity = 12
     else:
         victory_card_quantity = 8
     return curse_card_quantity, victory_card_quantity
-
 
 # Return a standard box of cards.
 def get_card_box(victory_card_quantity):
@@ -73,11 +81,11 @@ def get_random_supply_cards(card_box):
     boxlist = [k for k in card_box]
     random.shuffle(boxlist)
     random10 = boxlist[:10]
-    return defaultdict(list,[(k, card_box[k]) for k in random10])
+    return defaultdict(list, [(k, card_box[k]) for k in random10])
 
 # Set the default supply level of essential cards.
-def set_default_supply(supply, player_names, curse_card_quantity, victory_card_quantity):
-    supply["Copper"] = [Dominion.Copper()] * (60 - len(player_names) * 7)
+def set_default_supply(supply, num_players, curse_card_quantity, victory_card_quantity):
+    supply["Copper"] = [Dominion.Copper()] * (60 - num_players * 7)
     supply["Silver"] = [Dominion.Silver()] * 40
     supply["Gold"] = [Dominion.Gold()] * 30
     supply["Estate"] = [Dominion.Estate()] * victory_card_quantity
@@ -86,37 +94,45 @@ def set_default_supply(supply, player_names, curse_card_quantity, victory_card_q
     supply["Curse"] = [Dominion.Curse()] * curse_card_quantity
     return
 
-# Return a list of player objects.
-def build_players(player_names):
-    players = []
-    for name in player_names:
-        if name[0] == "*":
-            players.append(Dominion.ComputerPlayer(name[1:]))
-        elif name[0] == "^":
-            players.append(Dominion.TablePlayer(name[1:]))
-        else:
-            players.append(Dominion.Player(name))
-    return players
+def build_supply(num_players):
+    curse_card_quantity, victory_card_quantity = get_curse_victory_card_quantities(num_players)
+    box = get_card_box(victory_card_quantity)
+    supply = get_random_supply_cards(box)
+    set_default_supply(supply, num_players, curse_card_quantity, victory_card_quantity)
+    return supply
 
 
+# PLAY GAME FUNCTIONS
+# ---------------------------------------------------------------------------- #
+# Print the available supply of cards at each price point.
+def print_supply(supply, supply_prices):
+    print("\r")
+    for price in supply_prices:
+        print(price)
+        for card in supply_prices[price]:
+            if card in supply:
+                print(card, len(supply[card]))
+    print("\r")
+    return
+
+# Print the player names and current scores.
+def print_players(players):
+    print("\r")
+    for player in players:
+        print(player.name, player.calcpoints())
+    print("\r")
+    return
+
+# Have each player take a their turn.
+def play_turn(players, supply, trash):
+    for player in players:
+        if not Dominion.gameover(supply):
+            print("\r")
+            player.turn(players, supply, trash)
+    return
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# FINAL SCORE FUNCTIONS
+# ---------------------------------------------------------------------------- #
 
 
