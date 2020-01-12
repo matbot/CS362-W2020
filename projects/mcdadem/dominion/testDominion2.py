@@ -17,7 +17,8 @@ player_names = ["*Annie", "*Ben", "*Carla"]
 players = tU.build_players(player_names)
 
 # Build the supply deck.
-supply = tU.build_supply(len(player_names))
+nC, nV = tU.get_curse_victory_card_quantities(len(player_names))
+supply = tU.build_supply(len(player_names), nC, nV)
 
 # Get supply prices.
 supply_order = tU.get_supply_prices()

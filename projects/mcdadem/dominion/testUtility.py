@@ -94,8 +94,7 @@ def set_default_supply(supply, num_players, curse_card_quantity, victory_card_qu
     supply["Curse"] = [Dominion.Curse()] * curse_card_quantity
     return
 
-def build_supply(num_players):
-    curse_card_quantity, victory_card_quantity = get_curse_victory_card_quantities(num_players)
+def build_supply(num_players, curse_card_quantity, victory_card_quantity):
     box = get_card_box(victory_card_quantity)
     supply = get_random_supply_cards(box)
     set_default_supply(supply, num_players, curse_card_quantity, victory_card_quantity)
