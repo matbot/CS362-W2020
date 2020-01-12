@@ -134,5 +134,23 @@ def play_turn(players, supply, trash):
 
 # FINAL SCORE FUNCTIONS
 # ---------------------------------------------------------------------------- #
+# Get a list of winners based on calculated player card summaries.
+def get_winners(players):
+    dcs = Dominion.cardsummaries(players)
+    vp = dcs.loc['VICTORY POINTS']
+    vpmax = vp.max()
+    winners = []
+    for i in vp.index:
+        if vp.loc[i] == vpmax:
+            winners.append(i)
+    return winners, dcs
 
-
+# Print the winners and the card summaries.
+def print_winners(winners, dcs):
+    if len(winners) > 1:
+        winstring = ' and '.join(winners) + ' win!'
+    else:
+        winstring = ' '.join([winners[0], 'wins!'])
+    print("\nGAME OVER!!!\n" + winstring + "\n")
+    print(dcs)
+    return
