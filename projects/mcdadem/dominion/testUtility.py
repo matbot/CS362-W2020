@@ -10,6 +10,8 @@ from collections import defaultdict
 
 import projects.mcdadem.dominion.Dominion as Dominion
 
+
+# TODO: move non list building functions out of utility
 # BUILD GAME FUNCTIONS
 # ---------------------------------------------------------------------------- #
 # Return a list of player objects.
