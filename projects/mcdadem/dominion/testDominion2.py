@@ -10,7 +10,8 @@ import projects.mcdadem.dominion.testUtility as tU
 # BUILD GAME
 # ---------------------------------------------------------------------------- #
 # Set the player names.
-player_names = ["*Annie", "*Ben", "*Carla"]
+# BUG: initializing player_names as an empty list.
+player_names = []
 
 # Construct the player objects.
 players = tU.build_players(player_names)

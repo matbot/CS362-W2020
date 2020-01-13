@@ -11,7 +11,7 @@ from collections import defaultdict
 import projects.mcdadem.dominion.Dominion as Dominion
 
 
-# TODO: move non list building functions out of utility
+# TODO: move non list building functions out of utility to provide more surface area for bug introduction.
 # BUILD GAME FUNCTIONS
 # ---------------------------------------------------------------------------- #
 # Return a list of player objects.
