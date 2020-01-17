@@ -10,15 +10,14 @@ import projects.mcdadem.dominion.testUtility as tU
 # BUILD GAME
 # ---------------------------------------------------------------------------- #
 # Set the player names.
-# BUG: initializing player_names as an empty list.
-player_names = []
+player_names = ["*Mat", "*Jose", "*Annie"]
 
 # Construct the player objects.
 players = tU.build_players(player_names)
 
 # Build the supply deck.
 nC, nV = tU.get_curse_victory_card_quantities(len(player_names))
-supply = tU.build_supply(len(player_names), nC, nV)
+supply = tU.build_supply(nC, nC, nV)
 
 # Get supply prices.
 supply_order = tU.get_supply_prices()
