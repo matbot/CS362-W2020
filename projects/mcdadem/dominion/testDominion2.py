@@ -17,6 +17,8 @@ players = tU.build_players(player_names)
 
 # Build the supply deck.
 nC, nV = tU.get_curse_victory_card_quantities(len(player_names))
+# BUG: The first argument of tU.build_supply is incorrectly passed as nC
+# rather than len(player_names).
 supply = tU.build_supply(nC, nC, nV)
 
 # Get supply prices.
